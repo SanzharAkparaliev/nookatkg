@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: head"></head>
+<body>
+<div class="container-scroller">
+    <div class="main-panel">
+        <!-- partial:partials/_navbar.html -->
+        <header th:insert="fragments.html :: header">
+        </header>
+
+        <!-- partial -->
+        <div class="flash-news-banner">
+            <div class="container">
+                <div class="d-lg-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <span class="badge badge-dark mr-3"><a href="#down">  Акыркы кабарлар  </a>  </span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="mr-3 text-danger">ЖУМА, Март 15, 2021</span>
+                        <span class="text-danger">10°C,Nookat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--container-->
+        <div class="content-wrapper">
+            <div class="container">
+                <div class="row" data-aos="fade-up">
+                    <div class="col-xl-8 stretch-card grid-margin">
+                        <div class="position-relative">
+                            <a href="#">
+                                <img src="assets/images/Башкыбет/Baner/proba_1.jpg" alt="banner" class="img-fluid" style="border-radius: 3px;">
+                                <div class="banner-content" style="padding: 50px 20px;">
+                                    <h1 class="mb-2">
+                                        На территории Киргизии как акции протеста против предварительных результатов выборов...
+                                    </h1>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 stretch-card grid-margin">
+                        <div class="card bg-dark text-white">
+                            <div class="card-body">
+                                <h2>Соңку</h2>
+
+                            <div class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
+                                <div class="pr-3">
+                                    <a href="#">
+                                        <h5 class="sl-left">Google компаниясынын инженери менен жолугушуу</h5></a>
+                                </div>
+                                <div class="rotate-img">
+                                    <a href="#">
+                                        <img src="assets/images/Башкыбет/СонкуКабарлар/Сонку.png" alt="" class="img-fluid img-lg">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="d-flex border-bottom-blue pb-4 pt-4 align-items-center justify-content-between">
+                                <div class="pr-3">
+                                    <a href="#"><h5>Google компаниясынын инженери менен жолугушуу</h5></a>
+                                </div>
+                                <div class="rotate-img">
+                                    <a href="#">
+                                        <img src="assets/images/Башкыбет/СонкуКабарлар/Сонку.png" alt="" class="img-fluid img-lg">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="d-flex pt-4 align-items-center justify-content-between">
+                                <div class="pr-3">
+                                    <a href="#"><h5>Google компаниясынын инженери менен жолугушуу</h5></a>
+                                </div>
+                                <div class="rotate-img">
+                                    <a href="#">
+                                        <img src="assets/images/Башкыбет/СонкуКабарлар/Сонку.png" alt="" class="img-fluid img-lg">
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Akyrky makalalar-->
+        <div class="content-wrapper" id="down">
+            <div class="container">
+                <div class="col-sm-12">
+                    <div class="card" data-aos="fade-up">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3 class="font-weight-600 mb-4">
+                                        АКЫРКЫ МАКАЛАЛАР
+                                    </h3>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-sm-6 grid-margin">
+                                            <a href="#">
+                                                <div class="img"  style="object-fit:cover;height: 250px;background-image: url(data:image/jpeg;base64,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);
+                                              ">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6 grid-margin">
+                                            <h4 class="font-weight-600 mb-2">
+                                                <a  href="">Бизнес тармагын багындырып жаткан кыргызстандык 11 айым (тизме)
+                                                </a>
+                                            </h4>
+
+                                            <p class="fs-13">
+                                                C 26 февраля по 30 марта 2021 года прошёл марафон Techstars Startup Weekend 2021 среди всех стран Центральной Азии. Заявку на марафон подали
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus et sed dolor ullam obcaecati blanditiis. Reiciendis corporis nemo sequi dolor delectus dolorum iure, totam dolores error aperiam voluptate omnis eius!
+                                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum, nesciunt? Sapiente libero quibusdam placeat unde ullam numquam optio sint fuga, rerum, reiciendis earum atque vero et laudantium aperiam cupiditate amet!
+                                            </p>
+                                            <div class="read-more">
+                                                <a href="./pages/value.html">Уландысы</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-sm-6 grid-margin">
+                                            <a href="#">
+                                                <div class="img"  style="background-image: url(data:image/jpeg;base64,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);
+                                          ">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6 grid-margin">
+                                            <h4 class="font-weight-600 mb-2">
+                                                <a  href="">АКШда нөлдөн баштап бизнес куруп, эми мекендештерине жардам берип жаткан баткендик
+                                                </a>
+                                            </h4>
+
+                                            <p class="fs-13">
+                                                C 26 февраля по 30 марта 2021 года прошёл марафон Techstars Startup Weekend 2021 среди всех стран Центральной Азии. Заявку на марафон подали
+                                            </p>
+                                            <div class="read-more">
+                                                <a href="#">Уландысы</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-sm-6 grid-margin">
+                                            <a href="#">
+                                                <div class="img"  style="object-fit:cover ;height: 250px;background-image: url(https://img.freepik.com/free-photo/diverse-people-mockup-collection_53876-90768.jpg?w=2000);
+                                                ">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6 grid-margin">
+                                            <h4 class="font-weight-600 mb-2">
+                                                <a  href="">Первое место в Techstars Startup Weekend 2021 в Центральной Азии заняла команда из Кыргызстана
+                                                </a>
+                                            </h4>
+
+                                            <p class="fs-13">
+                                                C 26 февраля по 30 марта 2021 года прошёл марафон Techstars Startup Weekend 2021 среди всех стран Центральной Азии. Заявку на марафон подали
+                                            </p>
+                                            <div class="read-more">
+                                                <a href="#">Уландысы</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-sm-6 grid-margin">
+                                            <a href="#">
+                                                <div class="img"  style="object-fit:fill;background-image: url(https://www.incimages.com/uploaded_files/image/1920x1080/getty_517194189_373099.jpg);
+                                            ">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6 grid-margin">
+                                            <h4 class="font-weight-600 mb-2">
+                                                <a  href="">АКШда официанттыктан инженерликке чейин кызыктуу жолду басып өткөн баткендик Эмил
+                                                </a>
+                                            </h4>
+
+                                            <p class="fs-13">
+                                                Окуу жайды аяктаган соң чет өлкөдө калып, иштөө мүмкүнчүлүгү болгонуна карабастан, Акыл жолдошу Аскат менен билим
+                                                берүү тармагына өзгөртүүлөрдү киргизүү үчүн Кыргызстанга  </p>
+                                            <div class="read-more">
+                                                <a href="#">Уландысы</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-sm-6 grid-margin">
+                                            <a href="#">
+                                                <div class="img"  style=" height: 250px;background-image: url(https://cdn.mos.cms.futurecdn.net/CAZ6JXi6huSuN4QGE627NR.jpg);
+                                                ">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6 grid-margin">
+                                            <h4 class="font-weight-600 mb-2">
+                                                <a  href="">Бизнес тармагын багындырып жаткан кыргызстандык 11 айым (тизме)
+                                                </a>
+                                            </h4>
+
+                                            <p class="fs-13">
+                                                C 26 февраля по 30 марта 2021 года прошёл марафон Techstars Startup Weekend 2021 среди всех стран Центральной Азии. Заявку на марафон подали
+                                            </p>
+                                            <div class="read-more">
+                                                <a href="#">Уландысы</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-sm-6 grid-margin">
+                                            <a href="#">
+                                                <div class="img"  style=" height: 250px;background-image: url(https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg);
+                                            ">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6 grid-margin">
+                                            <h4 class="font-weight-600 mb-2">
+                                                <a  href="">АКШда нөлдөн баштап бизнес куруп, эми мекендештерине жардам берип жаткан баткендик
+                                                </a>
+                                            </h4>
+
+                                            <p class="fs-13">
+                                                C 26 февраля по 30 марта 2021 года прошёл марафон Techstars Startup Weekend 2021 среди всех стран Центральной Азии. Заявку на марафон подали
+                                            </p>
+                                            <div class="read-more">
+                                                <a href="#">Уландысы</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-sm-6 grid-margin">
+                                            <a href="#">
+                                                <div class="img"  style=" height: 250px;background-image: url(https://cdn.mos.cms.futurecdn.net/CAZ6JXi6huSuN4QGE627NR.jpg);
+                                                ">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6 grid-margin">
+                                            <h4 class="font-weight-600 mb-2">
+                                                <a  href="">Бизнес тармагын багындырып жаткан кыргызстандык 11 айым (тизме)
+                                                </a>
+                                            </h4>
+
+                                            <p class="fs-13">
+                                                C 26 февраля по 30 марта 2021 года прошёл марафон Techstars Startup Weekend 2021 среди всех стран Центральной Азии. Заявку на марафон подали
+                                            </p>
+                                            <div class="read-more">
+                                                <a href="#">Уландысы</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-sm-6 grid-margin">
+                                            <a href="#">
+                                                <div class="img"  style=" height: 250px;background-image: url(https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg);
+                                            ">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6 grid-margin">
+                                            <h4 class="font-weight-600 mb-2">
+                                                <a  href="">АКШда нөлдөн баштап бизнес куруп, эми мекендештерине жардам берип жаткан баткендик
+                                                </a>
+                                            </h4>
+
+                                            <p class="fs-13">
+                                                C 26 февраля по 30 марта 2021 года прошёл марафон Techstars Startup Weekend 2021 среди всех стран Центральной Азии. Заявку на марафон подали
+                                            </p>
+                                            <div class="read-more">
+                                                <a href="#">Уландысы</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="pagination">
+                                <div>
+                                    <ul class="arrow-pagination"><li>
+                                        <a>
+                                            Кийинки &gt;
+                                        </a>
+                                    </li>
+                                    </ul>
+                                </div>
+                                <div><ul class="number-pagination"><li class="active"><a>1</a></li> <li><a>2</a></li>
+                                    <li>
+                                        <a>3</a></li>
+                                    <li><a>...</a></li>
+                                    <li><a>312</a></li>
+                                    <li><a>313</a></li>
+                                    <li><a>314</a></li></ul>
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:insert="fragments.html :: loginPage">
+            </div>
+           <footer th:insert="fragments.html :: footer"></footer>
+        </div>
+    </div>
+</div>
+</body>
+</html>

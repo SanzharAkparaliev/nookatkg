@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ноокат Таңы...">
+    <meta name="keywords" content="Nookat,ноокат, ноокат таны,кабар ноокат">
+    <title>Ноокат Таңы</title>
+
+    <link
+            rel="stylesheet"
+            href="./assets/vendors/mdi/css/materialdesignicons.min.css"
+    />
+    <link rel="stylesheet" href="assets/vendors/aos/dist/aos.css/aos.css" />
+    <link rel="shortcut icon" href="assets/images/logoTitle.png"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container-scroller">
+    <div class="main-panel">
+        <!-- partial:partials/_navbar.html -->
+        <header id="header" th:fragment="header">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="navbar-top">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <ul class="navbar-top-left-menu">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link"><i class="mdi mdi-magnify"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Катталуу</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" type="button"data-toggle="modal" data-target="#exampleModal" class="nav-link">Кирүү</a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-top-left-menu">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/Байланышуу.html">Байлынышуу</a>
+
+                                    <ul class="social-media">
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi mdi-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi mdi-phone"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="mdi mdi-whatsapp"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="navbar-bottom" >
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <a class="navbar-brand" id="logo" href="#"><h1>Ноокат Таңы</h1> </a>
+                            </div>
+                            <div>
+                                <button class="navbar-toggler" type="button"    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" style="color: black;"
+                                        aria-expanded="false"
+                                        aria-label="Toggle navigation"
+                                        onclick="myFunction()">
+                                    <span class="navbar-toggler-icon"></span>
+
+                                </button>
+                                <div class="navbar-collapse justify-content-center collapse" id="navbarSupportedContent"  >
+
+                                    <ul class="navbar-nav d-lg-flex justify-content-between align-items-center">
+                                        <li>
+                                            <button class="navbar-close">
+                                                <i class="mdi mdi-close"></i>
+                                            </button>
+                                        </li>
+
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="index.html">Башкыбет</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="pages/Саламаттык.html">Саламаттык</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="pages/Трибуна.html">Трибуна</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="pages/Маек Төр.html">Маектөр</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="pages/Адеп Төр.html">Адептөр</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="pages/Кожейкеге кенеш.html">Кожейкеге_кеңеш</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="pages/4-микрофон.html">4_микрофон</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="pages/Эл собол.html">Элсобол</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="pages/Жарнак бет.html">жарнакбет</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="pages/Адабият айдыны.html">Адабият</a>
+                                        </li>
+                                        <li class="nav-item" id="click">
+                                            <div class="contact">
+                                                <a class="nav-link "  href="pages/Байланышуу.html">Байланышуу</a>
+                                                <div class="login">
+
+                                                    <a href="#" type="button"data-toggle="modal" data-target="#exampleModal" class="nav-link">Кирүү</a>
+
+                                                    <span>/</span>
+                                                    <a class="nav-link" href="#">Катталуу</a>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+
+        <!--Akyrky makalalar-->
+        <div class="content-wrapper" id="down">
+          <!-- Content-->
+
+            <div th:fragment="loginPage" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <div class="card-body p-2">
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="typeEmailX-2">Email</label>
+                                    <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="typePasswordX-2">Password</label>
+                                    <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
+                                </div>
+
+                                <!-- Checkbox -->
+                                <div class="form-check d-flex justify-content-start mb-4">
+                                    <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                                    <label class="form-check-label" for="form1Example3"> Remember password </label>
+                                </div>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+                                <hr class="my-4">
+                                <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
+                                        type="submit"><i class="mdi mdi-google me-2"></i> Sign in with google</button>
+                                <button class="btn btn-lg btn-block btn-primary mb-2 text-center" style="background-color: #3b5998;"
+                                        type="submit"><i class="mdi mdi-facebook me-2 pt-2"></i>Sign in with facebook</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer th:fragment="footer">
+                <div class="footer-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <h1  id="logo1">Ноокат Таңы</h1>
+                                <h5 class="font-weight-normal mt-4 mb-5">
+                                    Райондук коомдук - саясий гезити. Гезит 1934 - жылдан бери чыгат.
+                                </h5>
+                                <ul class="social-media">
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi mdi-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi mdi-phone"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi mdi-whatsapp"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <h3 class="font-weight-bold mb-3"></h3>
+                                <div class="footer-border-bottom pb-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0 font-weight-600"><a href="">  Саламаттык </a></h5>
+                                    </div>
+                                </div>
+                                <div class="footer-border-bottom pb-2 pt-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0 font-weight-600"><a href=""> Трибуна  </a> </h5>
+                                    </div>
+                                </div>
+                                <div class="footer-border-bottom pb-2 pt-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0 font-weight-600"><a href=""> Маек төр  </a> </h5>
+                                    </div>
+                                </div>
+                                <div class="footer-border-bottom pb-2 pt-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0 font-weight-600"><a href="">Адеп төр  </a> </h5>
+                                    </div>
+                                </div>
+                                <div class="pt-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0 font-weight-600"><a href="">Кожейкеге кеңеш </a> </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4" >
+                                <h3 class="font-weight-bold mb-3"></h3>
+                                <div class="footer-border-bottom pb-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0 font-weight-600"><a href="">  4-Микрофон  </a></h5>
+                                    </div>
+                                </div>
+                                <div class="footer-border-bottom pb-2 pt-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0 font-weight-600"><a href="">  Эл собол </a></h5>
+                                    </div>
+                                </div>
+                                <div class="footer-border-bottom pb-2 pt-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0 font-weight-600"> <a href="">  Жарнак бет </a></h5>
+                                    </div>
+                                </div>
+                                <div class="footer-border-bottom pb-2 pt-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0 font-weight-600"><a href="">  Адабият </a></h5>
+                                    </div>
+                                </div>
+                                <div class="pt-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0 font-weight-600"><a href=""> Байланышуу  </a> </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom" >
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="d-sm-flex justify-content-between align-items-center">
+                                    <div class="fs-14 font-weight-100">
+                                        © 2021
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script src="assets/js/script.js"></script>
+                <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+                <script src="assets/vendors/aos/dist/aos.js/aos.js"></script>
+                <script src="./assets/js/demo.js"></script>
+                <script src="./assets/js/jquery.easeScroll.js"></script>
+            </footer>
+        </div>
+    </div>
+</div>
+</body>
+</html>
