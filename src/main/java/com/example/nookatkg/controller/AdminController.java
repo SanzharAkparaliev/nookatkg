@@ -1,17 +1,87 @@
 package com.example.nookatkg.controller;
 
 
+import com.example.nookatkg.model.Category;
+import com.example.nookatkg.service.impl.CategoryServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+    @Autowired
+    private CategoryServiceImpl categoryService;
     @GetMapping("/")
     public String AdminPage(Model model){
         model.addAttribute("title","Админ панели");
         return "admin/admin-dashboard";
+    }
+
+    @GetMapping("/categories")
+    public String CategoryPage(Model model){
+        model.addAttribute("title","Категориялар");
+        List<Category> categories = categoryService.getCategories();
+        model.addAttribute("categories",categories);
+        return "admin/categories";
+    }
+
+    @GetMapping("/add-category")
+    public String Category(Model model){
+        model.addAttribute("title","Категория кошуу");
+        model.addAttribute("category",new Category());
+        return "admin/add-category";
+    }
+    @PostMapping("/add-category")
+    public String addCategory(@ModelAttribute("category") Category category){
+        String[] arrOfStr = category.getName().split(" ");
+        if(arrOfStr.length > 1){
+            System.out.println("true");
+            String newCategory = arrOfStr[0] + "_"+arrOfStr[1];
+            category.setName(newCategory.toUpperCase());
+        }else {
+            category.setName(category.getName().toUpperCase());
+        }
+        categoryService.createCategory(category);
+        return "redirect:/admin/categories";
+    }
+
+    @GetMapping("/category/delete/{id}")
+    public String deleteCategory(@PathVariable("id") Long categoryId){
+        categoryService.deleteCategory(categoryId);
+        return "redirect:/admin/categories";
+    }
+
+    @GetMapping("category/update/{id}")
+    public String updateCategory(@PathVariable("id")Long categoryId,Model model){
+        Optional<Category> category = categoryService.getCategory(categoryId);
+        model.addAttribute("title",category.get().getName());
+        if(category.isPresent()){
+            model.addAttribute("category",category.get());
+            return "admin/update-category";
+        }else {
+            return "404";
+        }
+    }
+
+    @PostMapping("/update-category")
+    public String updateCategoru(@ModelAttribute("category")Category category){
+        Category category1 = categoryService.getCategory(category.getId()).get();
+        category1.setName(category.getName());
+        categoryService.createCategory(category1);
+        return "redirect:/admin/categories";
+    }
+
+    @GetMapping("/add-news")
+    public String createNews(Model model){
+        List<Category> categories = categoryService.getCategories();
+        model.addAttribute("title","Жанылык жазуу");
+        model.addAttribute("categories",categories);
+        return "admin/add-news";
     }
 }

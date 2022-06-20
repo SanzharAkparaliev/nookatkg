@@ -13,24 +13,23 @@
                 <div class="row ml-3">
                     <div class="col-md-12 my-3">
                         <div class="bg-mattBlackLight px-3 py-3 text-center" >
-                            <h4 class="mb-2">All Categories</h4>
-                            <a th:href="@{/admin/add-categories}" style="margin: 20px 0" class="btn btn-primary">Add Category</a>
+                            <a th:href="@{/admin/add-category}" style="margin: 20px 0" class="btn btn-primary">Категория кошуу</a>
                             <table class="table" style="color: white">
                                 <thead class="thead-light">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Category Name</th>
-                                    <th scope="col">Delete</th>
-                                    <th scope="col">Update</th>
+                                    <th scope="col">Категория</th>
+                                    <th scope="col">Очуруу</th>
+                                    <th scope="col">Жанылоо</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 <tr th:each="category, iStat : ${categories}">
                                     <th scope="row" th:text="${iStat.index + 1}">1</th>
-                                    <td th:text="${category.catName}">Larry</td>
-                                    <td><a href="" th:href="@{/admin/categories/delete/{id}(id=${category.cId})}" class="btn btn-danger">Delete</a></td>
-                                    <td><a href="" th:href="@{/admin/categories/update/{id}(id=${category.cId})}" class="btn btn-warning">Update</a></td>
+                                    <td th:text="${category.name}">Larry</td>
+                                    <td><a href="" th:href="@{/admin/category/delete/{id}(id=${category.id})}" class="btn btn-danger">Delete</a></td>
+                                    <td><a href="" th:href="@{/admin/category/update/{id}(id=${category.id})}" class="btn btn-warning">Update</a></td>
                                 </tr>
                                 </tbody>
                             </table>

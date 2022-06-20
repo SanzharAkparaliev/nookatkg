@@ -13,8 +13,7 @@
                 <div class="row ml-3">
                     <div class="col-md-12 my-3">
                         <div class="bg-mattBlackLight px-3 py-3 text-center" >
-                            <h4 class="mb-2">Add New Category</h4>
-                            <p>Example: <b>Бишкек-Ош</b></p>
+                            <h4 class="mb-2">Жаны категория кошуу</h4>
                             <form action="" th:object="${category}"
                                   method="post"
                                   th:action="@{/admin/add-category}" >
@@ -23,10 +22,10 @@
                                         <div class="input-group-text ">
                                         </div>
                                     </div>
-                                    <input required type="text" th:value="${category.catName}" id="catName" name="catName" placeholder="Enter Category here" class="form-control">
+                                    <input required type="text" th:value="${category.name}" id="name" name="name" placeholder="Категория атын жазыныз..." class="form-control">
                                 </div>
                                 <div class="container mt-3">
-                                    <button class="btn btn-primary">Submit</button>
+                                    <button class="btn btn-primary">Сактоо</button>
                                 </div>
                             </form>
                         </div>

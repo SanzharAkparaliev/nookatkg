@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head th:insert="admin/fragmants.html :: head">
 </head>
 <body>
@@ -11,18 +11,31 @@
         <main>
             <div class="container-fluid">
                 <div class="row ml-3">
-                    <div class="col-md-12 my-3">
-                        <div class="bg-mattBlackLight px-3 py-3 text-center" >
-                            <h4 class="mb-2">Категория Ондоо</h4>
-                            <form action="" th:object="${category}"
+                    <div class="col-md-12 col-sm-12 my-3">
+                        <div class="text-center" >
+                            <form action="" th:object="${orders}"
                                   method="post"
-                                  th:action="@{/admin/update-category}" >
-                                <div class="input-group">
-                                    <input type="hidden" th:value="${category.getId()}" name="id">
-                                    <input required type="text" th:value="${category.name}" id="catName" name="name" placeholder="Ондолгон категория" class="form-control">
+                                  th:action="@{/user/add-orders}" >
+                                <div class="input-group row ml-1 pt-4 mb-5 row">
+                                    <textarea id="tiny" name="description"   class="form-control" rows="10" placeholder="Enter contact description"></textarea>
                                 </div>
+                                <div class="input-group row">
+
+                                    <div class="col-md-4">
+                                        <select class="form-control form-select form-select-sm" id="dropDownList" name="category">
+                                            <option  th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                                        </select>
+                                    </div>
+                                    <input required type="text"  id="title" name="title" placeholder="Теманы жазыныз" class="form-control">
+                                </div>
+                                <div class="input-group row pt-4">
+                                    <label class="mr-5 ml-3">Сурот танданыз</label>
+                                    <input type="file">
+                                </div>
+
+
                                 <div class="container mt-3">
-                                    <button class="btn btn-primary">Сактоо</button>
+                                    <button class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -32,21 +45,6 @@
         </main>
     </div>
 </div>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"
-></script>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"
-        integrity="sha256-OUFW7hFO0/r5aEGTQOz9F/aXQOt+TwqI1Z4fbVvww04="
-        crossorigin="anonymous"
-></script>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"
-        integrity="sha256-qE/6vdSYzQu9lgosKxhFplETvWvqAAlmAuR+yPh/0SI="
-        crossorigin="anonymous"
-></script>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

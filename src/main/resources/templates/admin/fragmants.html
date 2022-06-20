@@ -270,6 +270,22 @@
 
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y="crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous"/>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+
+            selector: 'textarea#tiny',
+            plugins: [
+                'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+                'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+                'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+            ],
+            toolbar: 'undo redo | a11ycheck casechange blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify |' +
+                'bullist numlist checklist outdent indent | removeformat | code table help'
+        })
+
+    </script>
 </head>
 
 <body style="background-color: #262626">
@@ -299,7 +315,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin/add-categories" class="nav-link px-2">
+                    <a href="/admin/add-news" class="nav-link px-2">
                         <i class="material-icons icon">create</i>
                         <span class="text">Жанылык жазуу</span>
                     </a>
@@ -314,7 +330,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin/add-categories" class="nav-link px-2">
+                    <a href="/admin/add-category" class="nav-link px-2">
                         <i class="material-icons icon">add</i>
                         <span class="text">Категория кошуу</span>
                     </a>

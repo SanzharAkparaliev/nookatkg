@@ -9559,7 +9559,6 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .text-hide {
-  font: 0/0 a;
   color: transparent;
   text-shadow: none;
   background-color: transparent;
@@ -10636,8 +10635,6 @@ header .navbar-bottom .navbar-toggler {
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
   align-items: stretch;
-  -webkit-box-pack: stretch;
-  -ms-flex-pack: stretch;
   justify-content: stretch;
 }
 
@@ -10865,3 +10862,7 @@ footer .footer-bottom {
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+@media(max-width: 999px){
+header  .navbar-bottom .navbar-nav {
+  padding-top: 1px;
+}}
