@@ -2,12 +2,23 @@ package com.example.nookatkg.controller;
 
 
 import com.example.nookatkg.model.Category;
+import com.example.nookatkg.model.Post;
 import com.example.nookatkg.service.impl.CategoryServiceImpl;
+import com.example.nookatkg.service.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -17,6 +28,9 @@ import java.util.Optional;
 public class AdminController {
     @Autowired
     private CategoryServiceImpl categoryService;
+
+    @Autowired
+    private PostServiceImpl postService;
     @GetMapping("/")
     public String AdminPage(Model model){
         model.addAttribute("title","Админ панели");
@@ -83,5 +97,22 @@ public class AdminController {
         model.addAttribute("title","Жанылык жазуу");
         model.addAttribute("categories",categories);
         return "admin/add-news";
+    }
+
+    @PostMapping("/add-post")
+    public String createPost(@ModelAttribute Post post,@RequestParam("image") MultipartFile file) throws IOException {
+        if(file.isEmpty()){
+            post.setImageUrl("image.jpg");
+        }else{
+            post.setImageUrl(file.getOriginalFilename());
+            File saveFile = new ClassPathResource("static/img").getFile();
+            Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
+            Files.copy(file.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        post.setDate(new Date());
+        postService.creatPost(post);
+
+        return "redirect:/admin/add-news";
     }
 }

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: head"></head>
+<body>
+<div class="container-scroller">
+    <div class="main-panel">
+        <!-- partial:partials/_navbar.html -->
+        <div th:insert="fragments.html :: header">
+        </div>
+
+        <!-- partial -->
+        <div class="flash-news-banner">
+            <div class="container">
+                <div class="d-lg-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <span class="badge badge-dark mr-3"><a href="#down">  Акыркы кабарлар  </a>  </span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="mr-3 text-danger">ЖУМА, Март 15, 2021</span>
+                        <span class="text-danger">10°C,Nookat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Akyrky makalalar-->
+        <div class="content-wrapper" id="down">
+            <div class="container">
+                <div class="card" data-aos="fade-up">
+                    <div id="news_list" class="my-3 my-lg-8">
+                        <div>
+                            <div class="col-12 col-md-10 col-lg-8">
+                                <div class="article-text">
+                                   <span th:utext="${post.content}"></span>
+                                    <hr>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-start ">
+                                                <img class="rounded-circle shadow-1-strong " src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60" height="60">
+                                                <div class="ml-2">
+                                                    <h6 class="fw-bold text-primary mb-1 ">Lily Coleman</h6>
+                                                    <p class="text-muted small mb-0">
+                                                        Shared publicly - Jan 2020
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <p style="line-height:1.6">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                                quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
+                                            </p>
+                                        </div>
+                                        <div class="card-footer py-1 border-0" style="background-color: #f8f9fa;">
+                                            <div class="d-flex flex-start w-100">
+                                                <div class="form-outline w-100">
+                                                    <label class="form-label" for="textAreaExample">Message</label>
+                                                    <textarea class="form-control" id="textAreaExample" rows="1" style="background: #fff;height:70px">                                            </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="float-end mt-2 pt-1">
+                                                <button type="button" class="btn btn-primary btn-sm">Post comment</button>
+                                                <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div th:insert="fragments.html :: loginPage">
+            </div>
+            <footer th:insert="fragments.html :: footer"></footer>
+        </div>
+    </div>
+</div>
+</body>
+</html>

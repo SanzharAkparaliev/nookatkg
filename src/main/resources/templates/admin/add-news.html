@@ -13,11 +13,12 @@
                 <div class="row ml-3">
                     <div class="col-md-12 col-sm-12 my-3">
                         <div class="text-center" >
-                            <form action="" th:object="${orders}"
+                            <form action="" th:object="${post}"
                                   method="post"
-                                  th:action="@{/user/add-orders}" >
+                                  enctype="multipart/form-data"
+                                  th:action="@{/admin/add-post}" >
                                 <div class="input-group row ml-1 pt-4 mb-5 row">
-                                    <textarea id="tiny" name="description"   class="form-control" rows="10" placeholder="Enter contact description"></textarea>
+                                    <textarea id="tiny" name="content" required  class="form-control" rows="10" placeholder="Контентти жазыныз..."></textarea>
                                 </div>
                                 <div class="input-group row">
 
@@ -26,11 +27,10 @@
                                             <option  th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
                                         </select>
                                     </div>
-                                    <input required type="text"  id="title" name="title" placeholder="Теманы жазыныз" class="form-control">
                                 </div>
                                 <div class="input-group row pt-4">
                                     <label class="mr-5 ml-3">Сурот танданыз</label>
-                                    <input type="file">
+                                    <input required type="file" name="image">
                                 </div>
 
 

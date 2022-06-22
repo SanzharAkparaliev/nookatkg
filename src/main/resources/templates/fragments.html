@@ -10,12 +10,13 @@
 
     <link
             rel="stylesheet"
-            href="./assets/vendors/mdi/css/materialdesignicons.min.css"
+           th:href="@{/assets/vendors/mdi/css/materialdesignicons.min.css}"
     />
-    <link rel="stylesheet" href="assets/vendors/aos/dist/aos.css/aos.css" />
-    <link rel="shortcut icon" href="assets/images/logoTitle.png"/>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" th:href="@{/assets/vendors/aos/dist/aos.css/aos.css}" />
+    <link rel="shortcut icon" th:href="@{/assets/images/logoTitle.png}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div class="container-scroller">
@@ -88,7 +89,7 @@
                                             </li>
 
                                             <li class="nav-item active">
-                                                <a class="nav-link" href="index.html" th:text="${category.name}">Башкыбет</a>
+                                                <a class="nav-link" href="#" th:href="@{/category/{id}(id=${category.id})}" th:text="${category.name}">Башкыбет</a>
                                             </li>
                                         </ul>
                                         <ul class="navbar-nav d-lg-flex justify-content-between align-items-center">
@@ -255,11 +256,12 @@
                         </div>
                     </div>
                 </div>
-                <script src="assets/js/script.js"></script>
-                <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-                <script src="assets/vendors/aos/dist/aos.js/aos.js"></script>
-                <script src="./assets/js/demo.js"></script>
-                <script src="./assets/js/jquery.easeScroll.js"></script>
+                <script th:src="@{/assets/js/script.js}"></script>
+                <script th:src="@{/assets/vendors/js/vendor.bundle.base.js}"></script>
+                <script th:src="@{/assets/vendors/aos/dist/aos.js/aos.js}"></script>
+                <script th:src="@{/assets/js/demo.js}"></script>
+                <script th:src="@{/assets/js/jquery.easeScroll.js}"></script>
+
             </footer>
         </div>
     </div>

@@ -223,16 +223,39 @@ footer .font-weight-600 a{
 #sing{
     padding:0 30px;
 }
-.fs-13{
-    height: 120px;
+.row .grid-margin .content{
+    height: 230px;
     display: block;
     line-height: 20px;
     overflow: hidden;
 }
 
+.row .grid-margin .content p{
+    line-height: 22px;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 13px;
+    word-wrap: break-word;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: initial;
+    line-height: 20px;
+    color: #3a3a3a;
+    text-align: left;
+}
+
+
+.row .grid-margin .content h2{
+    font-family: "Source Sans Pro", sans-serif;
+    word-wrap: break-word;
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .article-text img {
     max-width: 100%;
     height: auto;
+    text-align: center;
 }
 
 .me-2{
@@ -241,4 +264,9 @@ footer .font-weight-600 a{
 
 .sl-left{
     font-family:'PFRegalPro', 'MuseoSansBold';
+}
+
+.grid-margin .img{
+    height: 250px;
+    object-fit: cover;
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: head"></head>
+<body>
+<div class="container-scroller">
+    <div class="main-panel">
+        <!-- partial:partials/_navbar.html -->
+        <div th:insert="fragments.html :: header">
+        </div>
+
+        <!-- partial -->
+        <div class="flash-news-banner">
+            <div class="container">
+                <div class="d-lg-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <span class="badge badge-dark mr-3"><a href="#down">  Акыркы кабарлар  </a>  </span>
+                    </div>
+                    <div class="d-flex">
+                        <span class="mr-3 text-danger">ЖУМА, Март 15, 2021</span>
+                        <span class="text-danger">10°C,Nookat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Akyrky makalalar-->
+        <div class="content-wrapper" id="down">
+            <div class="container">
+                <div class="col-sm-12">
+                    <div class="card" data-aos="fade-up">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3 class="font-weight-600 mb-4"  th:text="${title}">
+
+                                    </h3>
+                                </div>
+                            </div>
+
+
+                            <div class="row" >
+                               <div class="col-lg-6" th:each="post : ${posts}">
+                                    <div class="row">
+                                        <div class="col-sm-6 grid-margin" style="text-align: center">
+                                            <a href="#" th:href="@{/category/news/{id}(id=${post.id})}">
+                                                    <img style="text-align: center" class="img" src="" th:src="@{/img/{link}(link=${post.imageUrl})}">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6 grid-margin">
+                                                <div class="content">
+                                                    <span th:utext="${post.content}"> </span>
+                                                </div>
+
+                                            <div class="read-more">
+                                                <a href="#"th:href="@{/category/news/{id}(id=${post.id})}">Уландысы</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="pagination">
+                                <div>
+                                    <ul class="arrow-pagination"><li>
+                                        <a>
+                                            Кийинки &gt;
+                                        </a>
+                                    </li>
+                                    </ul>
+                                </div>
+                                <div><ul class="number-pagination"><li class="active"><a>1</a></li> <li><a>2</a></li>
+                                    <li>
+                                        <a>3</a></li>
+                                    <li><a>...</a></li>
+                                    <li><a>312</a></li>
+                                    <li><a>313</a></li>
+                                    <li><a>314</a></li></ul>
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:insert="fragments.html :: loginPage">
+            </div>
+           <footer th:insert="fragments.html :: footer"></footer>
+        </div>
+    </div>
+</div>
+</body>
+</html>
