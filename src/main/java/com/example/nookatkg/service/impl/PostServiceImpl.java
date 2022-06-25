@@ -5,6 +5,9 @@ import com.example.nookatkg.model.Post;
 import com.example.nookatkg.repo.PostRepository;
 import com.example.nookatkg.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,8 +44,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getPostByCategory(Category category) {
-        return postRepository.findByCategoryOrderByDateDesc(category);
+    public Page<Post> getPostByCategory(Category category) {
+        Pageable pageable = PageRequest.of(0,8);
+        return (Page<Post>) postRepository.findByCategoryOrderByDateDesc(category,pageable);
     }
 
     @Override

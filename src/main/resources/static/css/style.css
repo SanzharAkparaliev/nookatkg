@@ -270,3 +270,7 @@ footer .font-weight-600 a{
     height: 250px;
     object-fit: cover;
 }
+
+.d-flex .pr-3 span{
+    display: none;
+}
