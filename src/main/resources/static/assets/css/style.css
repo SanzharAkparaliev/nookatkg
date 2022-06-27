@@ -10874,6 +10874,40 @@ header  .navbar-bottom .navbar-nav {
   }
 }
 .rotate-img img{
-  height: 60px;
-  width: auto;
+  object-fit: cover;
+}
+
+.pagination ul li.active a, .pagination  a:hover {
+  background: gray;
+  color: #fff;
+  border: 2px solid gray;
+}
+.pagination  a {
+  display: block;
+  padding: 5px 10px;
+  font-family: 'PFRegalPro', 'MuseoSansBold';
+  font-size: 1.1em;
+  color: #fff;
+  border: 2px solid #032a63;
+  cursor: pointer;
+
+}
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+.pagination .arrow-pagination {
+  margin: 0;
+  margin-bottom: 0px;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 5px;
+  overflow: hidden;
+  border: 2px solid #032a63;
+  background-color: #032a63;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 7px;
 }

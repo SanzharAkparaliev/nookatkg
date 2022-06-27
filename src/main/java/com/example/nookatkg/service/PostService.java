@@ -13,7 +13,7 @@ public interface PostService {
     void updatePost(Post post,Long postId);
     Optional<Post> getPost(Long postId);
     List<Post> getPosts();
-    Page<Post> getPostByCategory(Category category);
+    Page<Post> getPostByCategory(Category category,int p);
 
     void deletePost(Long postId);
 }

@@ -44,8 +44,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Page<Post> getPostByCategory(Category category) {
-        Pageable pageable = PageRequest.of(0,8);
+    public Page<Post> getPostByCategory(Category category,int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber-1,8);
         return (Page<Post>) postRepository.findByCategoryOrderByDateDesc(category,pageable);
     }
 
