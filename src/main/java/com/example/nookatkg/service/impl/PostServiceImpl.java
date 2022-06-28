@@ -72,4 +72,12 @@ public class PostServiceImpl implements PostService {
     public void deletePost(Long postId) {
         postRepository.deleteById(postId);
     }
+
+    public  List<Post> findAllByDate(){
+        return postRepository.findAllByOrderByDateDesc();
+    }
+
+    public Optional<Post> findByBannerTrue(){
+        return postRepository.findByBannerTrue();
+    }
 }

@@ -13,30 +13,28 @@
                 <div class="row ml-3">
                     <div class="col-md-12 col-sm-12 my-3">
                         <div class="text-center" >
-                            <h4 class="mb-2">All Drivers</h4>
+                            <h4 class="mb-2">All Posts</h4>
                             <table class="table" style="color: white">
                                 <thead class="thead-light">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Role</th>
-                                    <th scope="col">Phone Number</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">CarName</th>
-                                    <th scope="col">Delete</th>
+                                    <th scope="col">Тема</th>
+                                    <th scope="col">Дата</th>
+                                    <th scope="col">Банер</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-
-                                <tr th:each="user, iStat : ${users}" >
+                                <tr th:each="post, iStat : ${posts}" >
                                     <th scope="row" th:text="${iStat.index + 1}">1</th>
-                                    <td th:text="${user.name}"></td>
-                                    <td th:text="${user.role}"></td>
-                                    <td th:text="${user.phoneNumber}">Larry</td>
-                                    <td th:text="${user.email}">Larry</td>
-                                    <td th:text="${user.carName}">Larry</td>
+                                    <td th:text="${post.title}"></td>
+                                    <td th:text="${post.date}"></td>
 
-                                    <td th:if="${user.role == 'ROLE_USER'}"><a href="" th:href="@{/admin/user/delete/{id}(id=${user.userId})}" class="btn btn-danger">Delete</a></td>
+                                    <td th:if="${post.banner == true}">
+                                        <a href=""  class="btn btn-danger">Active</a>
+                                    </td>
+                                    <td th:if="${post.banner == false}">
+                                        <a href="" th:href="@{/admin/post/banner/active/{id}(id=${post.id})}" class="btn btn-primary">Do active</a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

@@ -1,5 +1,6 @@
 package com.example.nookatkg.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,9 @@ public class Post {
     @Column(length = 15000)
     private String content;
     private Date date;
+
+    @Builder.Default
+    private boolean banner = false;
 
     @ManyToOne
     private Category category;

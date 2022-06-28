@@ -274,3 +274,9 @@ footer .font-weight-600 a{
 .d-flex .pr-3 span{
     display: none;
 }
+
+.banner-img{
+    object-fit: cover;
+    width: 700px;
+    height: 500px;
+}

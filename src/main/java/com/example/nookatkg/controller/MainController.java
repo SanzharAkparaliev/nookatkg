@@ -49,6 +49,7 @@ public class MainController {
         Page<Post> posts = postService.getPostByCategory(category,currentPage);
         Long totalItems = posts.getTotalElements();
         int totalPages = posts.getTotalPages();
+        Optional<Post> postBanner = postService.findByBannerTrue();
 
         List<Post> postList = postService.getPosts();
         List<Post> array = new ArrayList<>();
@@ -65,6 +66,7 @@ public class MainController {
         model.addAttribute("title","Ноокат Таңы");
         model.addAttribute("title_content","Акыркы кабарлар");
         model.addAttribute("categories",categoryService.getCategories());
+        model.addAttribute("postBanner",postBanner.get());
 
         return "index";
     }

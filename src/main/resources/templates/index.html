@@ -32,12 +32,10 @@
                 <div class="row" data-aos="fade-up">
                     <div class="col-xl-8 stretch-card grid-margin">
                         <div class="position-relative">
-                            <a href="#">
-                                <img  th:src="@{/img/img.png}" src="assets/images/Башкыбет/Baner/proba_1.jpg" alt="banner" class="img-fluid" style="border-radius: 3px;">
-                                <div class="banner-content" style="padding: 50px 20px;">
-                                    <h1 class="mb-2">
-                                        На территории Киргизии как акции протеста против предварительных результатов выборов...
-                                    </h1>
+                            <a href="#" th:href="@{/category/news/{id}(id=${postBanner.id})}">
+                                <img th:class="banner-img"  th:src="@{/img/{link}(link=${postBanner.imageUrl})}"  alt="banner" class="img-fluid" style="border-radius: 3px;">
+                                <div class="banner-content" style="padding: 50px 20px">
+                                    <h1 class="mb-2" th:text="${postBanner.title}"></h1>
                                 </div>
                             </a>
                         </div>

@@ -139,5 +139,31 @@ public class AdminController {
 
         return "redirect:/";
     }
+    @GetMapping("/banner")
+    public String Banner(Model model){
+        model.addAttribute("title","Баннер");
+        List<Post> posts = postService.findAllByDate();
+        model.addAttribute("posts",posts);
+        System.out.println(posts);
+        return "admin/bannerSwicth";
+    }
+
+    @GetMapping("/post/banner/active/{id}")
+    public String DoActive(@PathVariable("id") Long postId){
+        Post post = postService.getPost(postId).get();
+        List<Post> posts = postService.getPosts();
+        for(Post post1:posts){
+            if(post1.isBanner() == true){
+                post1.setBanner(false);
+                postService.creatPost(post1);
+            }
+        }
+
+        post.setBanner(true);
+        postService.creatPost(post);
+        return "redirect:/admin/banner";
+    }
+
+
 
 }

@@ -10911,3 +10911,11 @@ header  .navbar-bottom .navbar-nav {
   max-width: 250px;
   object-fit: cover;
 }
+
+@media (max-width: 999px) {
+  .banner-img{
+    max-width: 100%;
+    height: auto;
+  }
+
+}
