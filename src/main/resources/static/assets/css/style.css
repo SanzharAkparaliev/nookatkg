@@ -10877,24 +10877,15 @@ header  .navbar-bottom .navbar-nav {
   object-fit: cover;
 }
 
-.pagination ul li.active a, .pagination  a:hover {
-  background: gray;
-  color: #fff;
-  border: 2px solid gray;
-}
 .pagination  a {
   display: block;
-  padding: 5px 10px;
+  padding: 1px 2px;
   font-family: 'PFRegalPro', 'MuseoSansBold';
-  font-size: 1.1em;
+  font-size: 0.8em;
   color: #fff;
   border: 2px solid #032a63;
   cursor: pointer;
 
-}
-a:hover {
-  color: #0056b3;
-  text-decoration: underline;
 }
 .pagination .arrow-pagination {
   margin: 0;
@@ -10910,4 +10901,13 @@ a:hover {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 7px;
+}
+.pagination .arrow-pagination .active , .pagination a:hover {
+  background: gray;
+  color: #fff;
+  border: 2px solid gray;
+}
+.grid-margin .img {
+  max-width: 250px;
+  object-fit: cover;
 }

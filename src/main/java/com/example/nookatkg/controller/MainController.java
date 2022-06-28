@@ -11,9 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +39,7 @@ public class MainController {
         if(category == null){
             return "404";
         }else {
-            Page<Post> posts = postService.getPostByCategory(category,currentPage);
-            model.addAttribute("posts",posts);
-            model.addAttribute("title",category.getName());
-            model.addAttribute("categories",categoryService.getCategories());
-            return "catpost";
+            return listByPages(id,model,currentPage);
         }
     }
 
@@ -55,6 +49,7 @@ public class MainController {
         Page<Post> posts = postService.getPostByCategory(category,currentPage);
         Long totalItems = posts.getTotalElements();
         int totalPages = posts.getTotalPages();
+
         List<Post> postList = postService.getPosts();
         List<Post> array = new ArrayList<>();
         if(postList.size() >= 3){
@@ -73,6 +68,23 @@ public class MainController {
 
         return "index";
     }
+    @GetMapping("category/{id}/pg/{pageNumber}")
+    public String listByPages(@PathVariable("id") Long categoryId,Model model,@PathVariable("pageNumber") int currentPage){
+        Category category = categoryService.getCategory(categoryId).get();
+        Page<Post> posts = postService.getPostByCategory(category,currentPage);
+        int totalPages = posts.getTotalPages();
+
+
+        model.addAttribute("title",category.getName());
+        model.addAttribute("posts",posts);
+        model.addAttribute("totalPages",totalPages);
+
+        model.addAttribute("currentPage",currentPage);
+        model.addAttribute("category",category);
+        model.addAttribute("categories",categoryService.getCategories());
+
+        return "catpost";
+    }
 
     @GetMapping("/category/news/{id}")
     public String getNews(@PathVariable("id") Long id,Model model){
@@ -83,4 +95,6 @@ public class MainController {
         model.addAttribute("categories",categoryService.getCategories());
         return "value";
     }
+
+
 }

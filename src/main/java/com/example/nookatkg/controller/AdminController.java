@@ -20,7 +20,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @Controller
@@ -115,4 +114,30 @@ public class AdminController {
 
         return "redirect:/admin/add-news";
     }
+    @GetMapping("/news/{id}")
+    public String getPost(Model model,@PathVariable("id") Long postId){
+        Post post = postService.getPost(postId).get();
+        List<Category> categories = categoryService.getCategories();
+        model.addAttribute("title","Жанылоо");
+        model.addAttribute("post",post);
+        model.addAttribute("categories",categories);
+        return "admin/update-news";
+    }
+
+    @PostMapping("/update-post")
+    public String updatePost(Model model, @ModelAttribute Post post,@RequestParam("image") MultipartFile file) throws IOException {
+
+        postService.updatePost(post,post.getId(),file);
+
+        return "redirect:/";
+    }
+    @GetMapping("/news/delete/{id}")
+    public String deletePost(@PathVariable("id")Long id){
+        Post post = postService.getPost(id).get();
+        Category category = post.getCategory();
+        postService.deletePost(id);
+
+        return "redirect:/";
+    }
+
 }

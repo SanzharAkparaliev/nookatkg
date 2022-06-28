@@ -92,10 +92,15 @@
                                         </div>
                                         <div class="col-sm-6 grid-margin">
                                             <div class="content">
+                                                <h4 class="font-weight-600 mb-2">
+                                                    <a  href="" th:href="@{/category/news/{id}(id=${post.id})}" th:text="${post.title}"></a>
+                                                </h4>
                                                 <span th:utext="${post.content}"> </span>
                                             </div>
 
                                             <div class="read-more">
+                                                <a href="#" th:href="@{/admin/news/delete/{id}(id=${post.id})}">Очуруу</a>
+                                                <a href="#" th:href="@{/admin/news/{id}(id=${post.id})}">Ондоо</a>
                                                 <a href="#" th:href="@{/category/news/{id}(id=${post.id})}">Уландысы</a>
                                             </div>
                                         </div>
@@ -111,9 +116,12 @@
                                             &laquo;
                                         </a>
                                     </span>
-                                    <span class="arrow-pagination" th:each="i:${#numbers.sequence(1,totalPages)}" th:if="${i != currentPage}">
-                                        <a  href="#" th:class="active"  th:href="@{'/page/' + ${i}}" th:text="${i}">
-                                            &laquo;
+                                    <span class="arrow-pagination" th:each="i:${#numbers.sequence(1,totalPages)}" >
+                                        <a  href="#" th:if="${i != currentPage}"   th:href="@{'/page/' + ${i}}" th:text="${i}">
+                                            &
+                                        </a>
+                                        <a  href="#" th:if="${i == currentPage}"  class="active"  th:href="@{'/page/' + ${i}}" th:text="${i}">
+                                            &
                                         </a>
                                     </span>
 
