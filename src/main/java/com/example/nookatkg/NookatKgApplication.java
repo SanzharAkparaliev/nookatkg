@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class NookatKgApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NookatKgApplication.class, args);
+         SpringApplication.run(NookatKgApplication.class, args);
     }
 
 }

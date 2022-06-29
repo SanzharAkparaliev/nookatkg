@@ -19,6 +19,7 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Тема</th>
+                                    <th scope="col">Категория</th>
                                     <th scope="col">Дата</th>
                                     <th scope="col">Банер</th>
                                 </tr>
@@ -27,6 +28,7 @@
                                 <tr th:each="post, iStat : ${posts}" >
                                     <th scope="row" th:text="${iStat.index + 1}">1</th>
                                     <td th:text="${post.title}"></td>
+                                    <td th:text="${post.category.name}"></td>
                                     <td th:text="${post.date}"></td>
 
                                     <td th:if="${post.banner == true}">

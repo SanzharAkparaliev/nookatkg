@@ -5,17 +5,22 @@ import com.example.nookatkg.model.Category;
 import com.example.nookatkg.model.Post;
 import com.example.nookatkg.service.CategoryService;
 import com.example.nookatkg.service.impl.PostServiceImpl;
+import com.example.nookatkg.service.impl.WeatherService;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 @Controller
 public class MainController {
@@ -24,8 +29,10 @@ public class MainController {
     @Autowired
     private PostServiceImpl postService;
 
+    @Autowired
+    private WeatherService weatherService;
     @GetMapping("/")
-    public String homePage(Model model) {
+    public String homePage(Model model) throws JSONException {
         return listByPage(model,1);
     }
 
@@ -44,7 +51,7 @@ public class MainController {
     }
 
     @GetMapping("/page/{pageNumber}")
-    public String listByPage(Model model,@PathVariable("pageNumber") int currentPage){
+    public String listByPage(Model model,@PathVariable("pageNumber") int currentPage) throws JSONException {
         Category category = categoryService.getCategory(1L).get();
         Page<Post> posts = postService.getPostByCategory(category,currentPage);
         Long totalItems = posts.getTotalElements();
@@ -58,6 +65,10 @@ public class MainController {
             array.add(postList.get(postList.size()-2));
             array.add(postList.get(postList.size()-3));
         }
+        JSONObject temp = weatherService.returnMainObject();
+        var tempa = temp.getDouble("temp");
+        int temparature = (int) (tempa-270.15-5);
+        model.addAttribute("temp",temparature);
         model.addAttribute("posts",posts);
         model.addAttribute("postList",array);
         model.addAttribute("totalItems",totalItems);
@@ -96,6 +107,15 @@ public class MainController {
         model.addAttribute("title",post.getTitle());
         model.addAttribute("categories",categoryService.getCategories());
         return "value";
+    }
+
+    @GetMapping("/temp")
+    public String getTemp(Model model) throws JSONException {
+        JSONObject temp = weatherService.returnMainObject();
+        var tempa = temp.getDouble("temp");
+        int temparature = (int) (tempa-270.15);
+        model.addAttribute("temp",temparature);
+        return "temp";
     }
 
 
