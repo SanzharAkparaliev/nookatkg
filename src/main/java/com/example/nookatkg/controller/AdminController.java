@@ -98,6 +98,7 @@ public class AdminController {
         return "admin/add-news";
     }
 
+
     @PostMapping("/add-post")
     public String createPost(@ModelAttribute Post post,@RequestParam("image") MultipartFile file) throws IOException {
         if(file.isEmpty()){
