@@ -34,7 +34,7 @@
                     <div class="col-xl-8 stretch-card grid-margin">
                         <div class="position-relative">
                             <a href="#" th:href="@{/category/news/{id}(id=${postBanner.id})}">
-                                <img th:class="banner-img" src="#" th:src="@{/img/{link}(link=${postBanner.imageUrl})}"  alt="banner" class="img-fluid" style="border-radius: 3px;">
+                                <img th:class="banner-img" src="#" th:src="@{${'/uploads/'+ postBanner.imageUrl}}"  alt="banner" class="img-fluid" style="border-radius: 3px;">
                                 <div class="banner-content" style="padding: 50px 20px">
                                     <h1 class="mb-2" th:text="${postBanner.title}"></h1>
                                 </div>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class=" col-sm-4 col-4">
                                     <a href="#" th:href="@{/category/news/{id}(id=${postl.id})}">
-                                        <img style="object-fit: cover" src="#"  th:src="@{/img/{link}(link=${postl.imageUrl})}"  th:alt="${postl.imageUrl}" class="img-fluid img-lg">
+                                        <img style="object-fit: cover" src="#"  th:src="@{/uploads/{link}(link=${postl.imageUrl})}"  th:alt="${postl.imageUrl}" class="img-fluid img-lg">
                                     </a>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                                     <div class="row">
                                         <div class="col-sm-6 grid-margin" style="text-align: center">
                                             <a href="#" th:href="@{/category/news/{id}(id=${post.id})}">
-                                                <img style="text-align: center" class="img" src="#" th:src="@{/img/{link}(link=${post.imageUrl})}">
+                                                <img style="text-align: center" class="img" src="#" th:src="@{/uploads/{link}(link=${post.imageUrl})}">
                                             </a>
 
                                         </div>

@@ -18,7 +18,7 @@
                                   enctype="multipart/form-data"
                                   th:action="@{/admin/add-post}" >
                                 <div class="input-group row ml-1 pt-4 mb-5 row">
-                                    <textarea id="tiny" name="content" required  class="form-control" rows="10" placeholder="Контентти жазыныз..."></textarea>
+                                    <textarea id="tiny" name="content"   class="form-control" rows="10" placeholder="Контентти жазыныз..."></textarea>
                                 </div>
                                 <div class="input-group row">
 
@@ -33,12 +33,12 @@
                                 </div>
                                 <div class="input-group row pt-4">
                                     <label class="mr-5 ml-3">Сурот танданыз</label>
-                                    <input required type="file" name="image">
+                                    <input  type="file" name="image">
                                 </div>
 
 
                                 <div class="container mt-3">
-                                    <button class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
                         </div>

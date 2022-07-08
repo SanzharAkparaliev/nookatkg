@@ -38,11 +38,11 @@ public class PostServiceImpl implements PostService {
         postInDb.setContent(post.getContent());
         if(!file.isEmpty()){
             //delete old photo
-            File deleteFile  = new ClassPathResource("static/img").getFile();
+            File deleteFile  = new ClassPathResource("static/uploads").getFile();
             File file1 = new File(deleteFile,postInDb.getImageUrl());
             file1.delete();
             //update new photo
-            File saveFile  = new ClassPathResource("static/img").getFile();
+            File saveFile  = new ClassPathResource("static/uploads").getFile();
             Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
             Files.copy(file.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
             postInDb.setImageUrl(file.getOriginalFilename());

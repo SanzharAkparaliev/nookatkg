@@ -5,13 +5,16 @@ import com.example.nookatkg.model.Category;
 import com.example.nookatkg.model.Post;
 import com.example.nookatkg.service.impl.CategoryServiceImpl;
 import com.example.nookatkg.service.impl.PostServiceImpl;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,12 +24,17 @@ import java.nio.file.StandardCopyOption;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+    @Value("${uploadDir}")
+    private String uploadFolder;
+
     @Autowired
     private CategoryServiceImpl categoryService;
+    public static  String uploadDir = System.getProperty("user.dir") + "/src/main/resources/static/uploads";
 
     @Autowired
     private PostServiceImpl postService;
@@ -100,16 +108,21 @@ public class AdminController {
 
 
     @PostMapping("/add-post")
-    public String createPost(@ModelAttribute Post post,@RequestParam("image") MultipartFile file) throws IOException {
-        if(file.isEmpty()){
-            post.setImageUrl("image.jpg");
-        }else{
-            post.setImageUrl(file.getOriginalFilename());
-            File saveFile = new ClassPathResource("static/img").getFile();
-            Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
-            Files.copy(file.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
-        }
+    public String createPost(@ModelAttribute Post post, @RequestParam("image") MultipartFile file, HttpServletRequest request) throws IOException {
 
+//            post.setImageUrl(file.getOriginalFilename());
+//            File saveFile = new ClassPathResource("/static/img").getFile();
+//            Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
+//            Files.copy(file.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
+        String imageUUID;
+        if(!file.isEmpty()){
+            imageUUID = file.getOriginalFilename();
+            Path fileNameAndPath = Paths.get(uploadDir,imageUUID);
+            Files.write(fileNameAndPath,file.getBytes());
+            post.setImageUrl(imageUUID);
+        }else {
+            post.setImageUrl("image.jpg");
+        }
         post.setDate(new Date());
         postService.creatPost(post);
 
