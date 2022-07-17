@@ -29,8 +29,6 @@ import java.util.logging.Logger;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    @Value("${uploadDir}")
-    private String uploadFolder;
 
     @Autowired
     private CategoryServiceImpl categoryService;
