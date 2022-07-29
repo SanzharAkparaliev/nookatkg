@@ -3,9 +3,11 @@ package com.example.nookatkg.controller;
 
 import com.example.nookatkg.helper.Message;
 import com.example.nookatkg.model.Category;
+import com.example.nookatkg.model.Comment;
 import com.example.nookatkg.model.Post;
 import com.example.nookatkg.model.User;
 import com.example.nookatkg.service.CategoryService;
+import com.example.nookatkg.service.impl.CommentServiceImp;
 import com.example.nookatkg.service.impl.PostServiceImpl;
 import com.example.nookatkg.service.impl.UserServiceimpl;
 import com.example.nookatkg.service.impl.WeatherService;
@@ -32,6 +34,8 @@ public class MainController {
 
     @Autowired
     private UserServiceimpl userServiceimpl;
+    @Autowired
+    private CommentServiceImp commentServiceImp;
 
     @Autowired
     private WeatherService weatherService;
@@ -82,7 +86,7 @@ public class MainController {
         model.addAttribute("title_content","Акыркы кабарлар");
         model.addAttribute("categories",categoryService.getCategories());
         model.addAttribute("postBanner",postBanner.get());
-
+        model.addAttribute("user", new User());
         return "index";
     }
     @GetMapping("category/{id}/pg/{pageNumber}")
@@ -99,42 +103,32 @@ public class MainController {
         model.addAttribute("currentPage",currentPage);
         model.addAttribute("category",category);
         model.addAttribute("categories",categoryService.getCategories());
-
+        model.addAttribute("user",new User());
         return "catpost";
     }
 
     @GetMapping("/category/news/{id}")
     public String getNews(@PathVariable("id") Long id,Model model){
         Post post = postService.getPost(id).get();
-        Category category = post.getCategory();
+        List<Comment> comments = commentServiceImp.getCommentsByPost(post);
         model.addAttribute("post",post);
         model.addAttribute("title",post.getTitle());
+        model.addAttribute("postId",id);
+        model.addAttribute("comment",new Comment());
+        model.addAttribute("comments",comments);
         model.addAttribute("categories",categoryService.getCategories());
+        model.addAttribute("user",new User());
         return "value";
     }
 
-    @GetMapping("/temp")
-    public String getTemp(Model model) throws JSONException {
-        JSONObject temp = weatherService.returnMainObject();
-        var tempa = temp.getDouble("temp");
-        int temparature = (int) (tempa-270.15);
-        model.addAttribute("temp",temparature);
-        return "temp";
-    }
-
-    @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("user") User user, HttpSession session,Model model){
-        System.out.println("User = " + user);
-        User userInDb = userServiceimpl.getUser(user.getUsername());
-        if(userInDb == null){
-            userServiceimpl.createUser(user);
-            session.setAttribute("message",new Message("Successfully Register !! " ,"alert-success"));
-        }else {
-            model.addAttribute("user",user);
-            session.setAttribute("message",new Message("Something Went wrong !! " ,"alert-danger"));
-        }
-        return "redirect:/";
-    }
+//    @GetMapping("/temp")
+//    public String getTemp(Model model) throws JSONException {
+//        JSONObject temp = weatherService.returnMainObject();
+//        var tempa = temp.getDouble("temp");
+//        int temparature = (int) (tempa-270.15);
+//        model.addAttribute("temp",temparature);
+//        return "temp";
+//    }
 
 
 }

@@ -1,7 +1,6 @@
 package com.example.nookatkg.config;
 
 import com.example.nookatkg.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,13 +23,11 @@ public class MyUserDetails implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
-        return user.getPassword();
-    }
+    public String getPassword() {return user.getPassword();}
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return user.getEmail();
     }
 
     @Override

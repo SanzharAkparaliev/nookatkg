@@ -3,6 +3,8 @@ spring:
     password: password
     url: jdbc:mysql://localhost:3306/nookatkg
     username: root
+  main:
+    allow-circular-references: true
   jpa:
     hibernate:
       ddl-auto: update

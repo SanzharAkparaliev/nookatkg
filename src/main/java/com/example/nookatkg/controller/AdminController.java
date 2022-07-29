@@ -123,7 +123,6 @@ public class AdminController {
         }
         post.setDate(new Date());
         postService.creatPost(post);
-
         return "redirect:/admin/add-news";
     }
     @GetMapping("/news/{id}")
@@ -138,9 +137,7 @@ public class AdminController {
 
     @PostMapping("/update-post")
     public String updatePost(Model model, @ModelAttribute Post post,@RequestParam("image") MultipartFile file) throws IOException {
-
         postService.updatePost(post,post.getId(),file);
-
         return "redirect:/";
     }
     @GetMapping("/news/delete/{id}")

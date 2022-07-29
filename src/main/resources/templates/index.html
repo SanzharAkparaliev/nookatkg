@@ -30,6 +30,10 @@
             <th:block th:text="${#session.removeAttribute('message')}"></th:block>
         </div>
 
+        <div align="center" th:if="${param.error}">
+            <p style="font-size: 20; color: #FF1C19;">Email or contraseña errónea, por favor intente nuevamente.</p>
+        </div>
+
 
         <!--container-->
         <div class="content-wrapper">
@@ -69,6 +73,8 @@
                 </div>
             </div>
         </div>
+
+
 
         <!--Akyrky makalalar-->
         <div class="content-wrapper" id="down">

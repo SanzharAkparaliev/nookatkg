@@ -3,7 +3,7 @@ package com.example.nookatkg.service;
 import com.example.nookatkg.model.User;
 
 public interface UserService {
-     void createUser(User user);
-     User getUser(String user);
+     void createUser(String user,String email,String password);
+     User getUser(String userName);
 
 }

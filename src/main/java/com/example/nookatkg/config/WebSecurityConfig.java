@@ -48,22 +48,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .antMatchers("/**").permitAll()
-//                .and()
-//                .formLogin()
-//                .loginPage("/singin")
-//                .loginProcessingUrl("/dologin")
-//                .defaultSuccessUrl("/default")
-//                .and()
-//                .csrf().disable();
+                .antMatchers("/admin/**").access("hasRole('ADMIN')")
+                .antMatchers("/**").permitAll()
                 .and()
+                .formLogin()
+                .loginPage("/")
+                .loginProcessingUrl("/dologin")
+                .and()
+                .logout().permitAll()
+                .and()
+
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .and()
+
                 .oauth2Login()
                 .userInfoEndpoint()
                 .userService(oAuth2UserService)
                 .and()
-                .successHandler(oAuth2LoginSuccessHandler)
-                .and()
-                .logout().permitAll();
+                .successHandler(oAuth2LoginSuccessHandler);
+//                .and()
+//                .logout().permitAll();
     }
 }
