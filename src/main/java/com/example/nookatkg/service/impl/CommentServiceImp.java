@@ -2,6 +2,7 @@ package com.example.nookatkg.service.impl;
 
 import com.example.nookatkg.model.Comment;
 import com.example.nookatkg.model.Post;
+import com.example.nookatkg.model.User;
 import com.example.nookatkg.repo.CommentRepo;
 import com.example.nookatkg.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,16 @@ public class CommentServiceImp implements CommentService {
 
     @Autowired
     private PostServiceImpl postService;
+
+    @Autowired
+    private UserServiceimpl userServiceimpl;
     @Override
-    public void createComment(String content, Long postId) {
+    public void createComment(String content, Long postId,String username) {
       Optional<Post> post =  postService.getPost(postId);
-        Comment comment = new Comment();
+      Comment comment = new Comment();
         comment.setContent(content);
         comment.setPost(post.get());
+        comment.setUsername(username);
         commentRepo.save(comment);
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:insert="fragments.html :: head"></head>
 <body>
 <div class="container-scroller">
@@ -31,7 +31,7 @@
                                         <div class="row">
                                             <div class="col-sm-6 grid-margin" style="text-align: center">
                                                 <a href="#" th:href="@{/category/news/{id}(id=${post.id})}">
-                                                    <img style="text-align: center" class="img" src="" th:src="@{/img/{link}(link=${post.imageUrl})}">
+                                                    <img style="text-align: center" class="img" src="" th:src="@{/uploads/{link}(link=${post.imageUrl})}">
                                                 </a>
                                             </div>
                                             <div class="col-sm-6 grid-margin">
@@ -44,8 +44,8 @@
                                                 </div>
 
                                                 <div class="read-more">
-                                                    <a href="#" th:href="@{/admin/news/delete/{id}(id=${post.id})}">Очуруу</a>
-                                                    <a href="#" th:href="@{/admin/news/{id}(id=${post.id})}">Ондоо</a>
+                                                    <a href="#" sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/news/delete/{id}(id=${post.id})}">Очуруу</a>
+                                                    <a href="#" sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/news/{id}(id=${post.id})}">Ондоо</a>
                                                     <a href="#"th:href="@{/category/news/{id}(id=${post.id})}">Уландысы</a>
                                                 </div>
                                             </div>

@@ -13,30 +13,23 @@
                 <div class="row ml-3">
                     <div class="col-md-12 col-sm-12 my-3">
                         <div class="text-center" >
-                            <h4 class="mb-2">Жанылыктар</h4>
+                            <h4 class="mb-2">Катталуучулар</h4>
                             <table class="table" style="color: white">
                                 <thead class="thead-light">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Тема</th>
-                                    <th scope="col">Категория</th>
-                                    <th scope="col">Дата</th>
-                                    <th scope="col">Банер</th>
+                                    <th scope="col">Аты</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Role</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="post, iStat : ${posts}" >
+                                <tr th:each="user, iStat : ${users}" >
                                     <th scope="row" th:text="${iStat.index + 1}">1</th>
-                                    <td th:text="${post.title}"></td>
-                                    <td th:text="${post.category.name}"></td>
-                                    <td th:text="${post.date}"></td>
+                                    <td th:text="${user.username}"></td>
+                                    <td th:text="${user.email}"></td>
+                                    <td th:text="${user.role}"></td>
 
-                                    <td th:if="${post.banner == true}">
-                                        <a href=""  class="btn btn-danger">Active</a>
-                                    </td>
-                                    <td th:if="${post.banner == false}">
-                                        <a href="" th:href="@{/admin/post/banner/active/{id}(id=${post.id})}" class="btn btn-primary">Аctive кылуу</a>
-                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

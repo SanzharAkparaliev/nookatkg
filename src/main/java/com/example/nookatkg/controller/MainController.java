@@ -50,11 +50,12 @@ public class MainController {
         if(id==1){
             return "redirect:/";
         }
-        Category category = categoryService.getCategory(id).get();
-        if(category == null){
-            return "404";
-        }else {
+
+        try {
+            Category category = categoryService.getCategory(id).get();
             return listByPages(id,model,currentPage);
+        }catch (Exception e){
+            return "404";
         }
     }
 
@@ -109,16 +110,22 @@ public class MainController {
 
     @GetMapping("/category/news/{id}")
     public String getNews(@PathVariable("id") Long id,Model model){
-        Post post = postService.getPost(id).get();
-        List<Comment> comments = commentServiceImp.getCommentsByPost(post);
-        model.addAttribute("post",post);
-        model.addAttribute("title",post.getTitle());
-        model.addAttribute("postId",id);
-        model.addAttribute("comment",new Comment());
-        model.addAttribute("comments",comments);
-        model.addAttribute("categories",categoryService.getCategories());
-        model.addAttribute("user",new User());
-        return "value";
+        try {
+            Post post = postService.getPost(id).get();
+            List<Comment> comments = commentServiceImp.getCommentsByPost(post);
+            model.addAttribute("post",post);
+            model.addAttribute("title",post.getTitle());
+            model.addAttribute("postId",id);
+            model.addAttribute("comment",new Comment());
+            model.addAttribute("comments",comments);
+            model.addAttribute("categories",categoryService.getCategories());
+            model.addAttribute("user",new User());
+            return "value";
+
+        }catch (Exception e){
+            return "404";
+        }
+
     }
 
 //    @GetMapping("/temp")
@@ -130,5 +137,6 @@ public class MainController {
 //        return "temp";
 //    }
 
-
 }
+
+

@@ -5,12 +5,13 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 @Getter
 @Setter
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -22,8 +23,8 @@ public class User {
 
     @Column(unique = true)
     private String email;
-
     private String role;
     private String password;
     private boolean enabled;
+
 }

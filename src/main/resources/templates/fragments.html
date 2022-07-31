@@ -14,7 +14,7 @@
     />
 
     <link rel="stylesheet" th:href="@{/assets/vendors/aos/dist/aos.css/aos.css}" />
-    <link rel="shortcut icon" th:href="@{/assets/images/logoTitle.png}"/>
+    <link rel="shortcut icon" th:href="@{/assets/images/logoTitle.jpg}"/>
     <link rel="stylesheet" th:href="@{/assets/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
@@ -34,10 +34,13 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a href="#" type="button"data-toggle="modal" data-target="#singinModal" class="nav-link">Катталуу</a>
+                                        <a href="#" type="button"data-toggle="modal" data-target="#singinModal" sec:authorize="isAnonymous()"  class="nav-link">Катталуу</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" type="button"data-toggle="modal" data-target="#loginModal" class="nav-link">Кируу</a>
+                                        <a href="#" type="button"data-toggle="modal" data-target="#loginModal" sec:authorize="isAnonymous()" class="nav-link">Кирүү</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" type="button" th:href="@{/logout}" sec:authorize="isAuthenticated()" class="nav-link">Чыгуу</a>
                                     </li>
 
 
@@ -46,11 +49,15 @@
 
                                     <li class="nav-item">
                                         <a class="nav-link" href="/admin/" sec:authorize="hasAnyRole('ROLE_ADMIN')" >Админ</a>
-                                        <a class="nav-link" href="pages/Байланышуу.html">Байлынышуу</a>
 
                                         <ul class="social-media">
                                             <li>
-                                                <a href="#" th:href="@{/oauth2/authorization/google}">
+                                                <a href="#" >
+                                                    <i class="mdi mdi-phone"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" >
                                                     <i class="mdi mdi-google"></i>
                                                 </a>
                                             </li>
@@ -98,13 +105,15 @@
                                         <ul class="navbar-nav d-lg-flex justify-content-between align-items-center">
                                             <li class="nav-item" id="click">
                                                 <div class="contact">
-                                                    <a class="nav-link "  href="pages/Байланышуу.html">Байланышуу</a>
-                                                    <div class="login">
+                                                    <div class="login" sec:authorize="isAnonymous()">
 
-                                                        <a href="#" type="button"data-toggle="modal" data-target="#loginModal" class="nav-link">Кирүү</a>
+                                                        <a href="#" type="button"data-toggle="modal" sec:authorize="isAnonymous()" data-target="#loginModal" class="nav-link">Кирүү</a>
 
                                                         <span>/</span>
-                                                        <a  href="#" type="button"data-toggle="modal" data-target="#singinModal" class="nav-link">Катталуу</a>
+                                                        <a  href="#" type="button"data-toggle="modal" sec:authorize="isAnonymous()" data-target="#singinModal" class="nav-link">Катталуу</a>
+                                                    </div>
+                                                    <div class="login" sec:authorize="isAuthenticated()">
+                                                        <a href="#" type="button" th:href="@{/logout}" sec:authorize="isAuthenticated()" class="nav-link">Чыгуу</a>
                                                     </div>
                                                 </div>
                                             </li>
@@ -139,29 +148,29 @@
                                         <div class="form-outline mb-4">
                                             <div class="invalid-feedback" th:each="e : ${#fields.errors('username')}" th:text="${e}">
                                             </div>
-                                            <input required value="name" type="text" name="username" id="username" class="form-control form-control-lg" />
+                                            <input required placeholder="Атыныз" type="text" name="username" id="username" class="form-control form-control-lg" />
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <input required value="email" type="email" name="email"  class="form-control form-control-lg" />
+                                            <input required placeholder="Email" type="email" name="email"  class="form-control form-control-lg" />
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input required type="password"  value="password"  name="password" class="form-control form-control-lg" />
+                                            <input required type="password"  placeholder="Сырсөз"  name="password" class="form-control form-control-lg" />
                                         </div>
                                         <div class="form-check d-flex justify-content-start mb-4">
                                             <input class="form-check-input" type="checkbox" value="" id="form1Exampl" />
-                                            <label class="form-check-label" for="form1Example3"> Remember password </label>
+                                            <label class="form-check-label" for="form1Example3"> Сырсөздү эстеп калуу </label>
                                         </div>
-                                        <button class="btn btn-primary btn-lg btn-block" type="submit">Катталуу</button>
+                                        <button class="btn btn-primary btn-lg btn-block" type="submit">Жөнөтүү</button>
 
                                     </form>
                                     <hr class="my-4">
                                     <a class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;color: white"
                                        type="submit" th:href="@{/oauth2/authorization/google}">
                                         <i class="mdi mdi-google me-2"></i>
-                                        Sign in with google</a>
+                                        аркылуу кирүү</a>
                                     <a class="btn btn-lg btn-block btn-primary mb-2 text-center" style="background-color: #3b5998; color: white"
-                                       type="submit" th:href="@{/oauth2/authorization/facebook}"><i class="mdi mdi-facebook me-2 pt-2"></i>Sign in with facebook</a>
+                                       type="submit" th:href="@{/oauth2/authorization/facebook}"><i class="mdi mdi-facebook me-2 pt-2"></i>аркылуу кирүү</a>
 
                                 </div>
 
@@ -185,28 +194,24 @@
                                 <div class="card-body p-2">
                                     <form th:action="@{/dologin}" action=""  method="post">
                                         <div class="form-outline mb-4">
-                                            <input required value="email" type="email" name="username" id="typeEmailX-2" class="form-control form-control-lg" />
+                                            <input required placeholder="Email" type="email" name="username" id="typeEmailX-2" class="form-control form-control-lg" />
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input required type="password"  value="password" id="typePasswordX-2" name="password" class="form-control form-control-lg" />
+                                            <input required type="password"  placeholder="Сырсөз" id="typePasswordX-2" name="password" class="form-control form-control-lg" />
                                         </div>
+                                        <a style="text-decoration: none"  class="ml-3" href="#"> Сырсөзүм кандай эле? </a>
 
-
-                                        <div class="form-check d-flex justify-content-start mb-4">
-                                            <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
-                                            <label class="form-check-label" for="form1Example3"> Remember password </label>
-                                        </div>
-                                        <button class="btn btn-primary btn-lg btn-block" type="submit">Кируу</button>
+                                        <button  class="mt-3 btn btn-primary btn-lg btn-block" type="submit">Жөнөтүү</button>
                                     </form>
 
                                     <hr class="my-4">
                                     <a class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;color: white"
                                        type="submit" th:href="@{/oauth2/authorization/google}">
                                         <i class="mdi mdi-google me-2"></i>
-                                        Sign in with google</a>
+                                         аркылуу кирүү</a>
                                     <a class="btn btn-lg btn-block btn-primary mb-2 text-center" style="background-color: #3b5998; color: white"
-                                       type="submit" th:href="@{/oauth2/authorization/facebook}"><i class="mdi mdi-facebook me-2 pt-2"></i>Sign in with facebook</a>
+                                       type="submit" th:href="@{/oauth2/authorization/facebook}"><i class="mdi mdi-facebook me-2 pt-2"></i>  аркылуу кирүү</a>
 
                                 </div>
 
@@ -229,13 +234,18 @@
                                 <h3 class="font-weight-bold mb-3"></h3>
                                 <ul class="social-media">
                                     <li>
-                                        <a href="#">
-                                            <i class="mdi mdi-facebook"></i>
+                                        <a href="#" >
+                                            <i class="mdi mdi-phone"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" >
+                                            <i class="mdi mdi-google"></i>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="mdi mdi-phone"></i>
+                                            <i class="mdi mdi-facebook"></i>
                                         </a>
                                     </li>
                                     <li>

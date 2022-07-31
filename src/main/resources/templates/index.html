@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:insert="fragments.html :: head"></head>
 <body>
 <div class="container-scroller">
@@ -31,7 +31,7 @@
         </div>
 
         <div align="center" th:if="${param.error}">
-            <p style="font-size: 20; color: #FF1C19;">Email or contraseña errónea, por favor intente nuevamente.</p>
+            <p style="font-size: 20; color: #FF1C19;">Туура эмес маалымат киргизилди! Кайрадан жасап корунуз...</p>
         </div>
 
 
@@ -108,8 +108,8 @@
                                             </div>
 
                                             <div class="read-more">
-                                                <a href="#" th:href="@{/admin/news/delete/{id}(id=${post.id})}">Очуруу</a>
-                                                <a href="#" th:href="@{/admin/news/{id}(id=${post.id})}">Ондоо</a>
+                                                <a href="#" sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/news/delete/{id}(id=${post.id})}">Очуруу</a>
+                                                <a href="#" sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/news/{id}(id=${post.id})}">Ондоо</a>
                                                 <a href="#" th:href="@{/category/news/{id}(id=${post.id})}">Уландысы</a>
                                             </div>
                                         </div>
@@ -121,11 +121,11 @@
                             <div class="pagination">
                                 <div>
                                     <span class="arrow-pagination" th:if="${currentPage>1}">
-                                        <a  href="#"  th:href="@{'/page/' + ${currentPage-1}}">
+                                        <a  href="#"   th:href="@{'/page/' + ${currentPage-1}}">
                                             &laquo;
                                         </a>
                                     </span>
-                                    <span class="arrow-pagination" th:each="i:${#numbers.sequence(1,totalPages)}" >
+                                    <span  class="arrow-pagination paginum" th:each="i:${#numbers.sequence(1,totalPages)}" >
                                         <a  href="#" th:if="${i != currentPage}"   th:href="@{'/page/' + ${i}}" th:text="${i}">
                                             &
                                         </a>

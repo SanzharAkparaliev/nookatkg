@@ -10919,3 +10919,10 @@ header  .navbar-bottom .navbar-nav {
   }
 
 }
+
+.pagination paginum{
+  display: none;
+}
+.pagination paginum:nth-child(-n+1) {
+  display: block;
+}

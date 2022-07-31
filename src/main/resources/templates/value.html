@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:insert="fragments.html :: head"></head>
 <body>
 <div class="container-scroller">
@@ -20,24 +20,22 @@
                                     <span th:utext="${post.content}"></span>
                                     <hr>
                                     <div class="card">
-                                        <div class="card-body">
+                                        <div   th:each="comment : ${comments}">
                                             <div class="d-flex flex-start ">
                                                 <div class="ml-2">
-                                                    <h6 class="fw-bold text-primary mb-1 ">Lily Coleman</h6>
-                                                    <p class="text-muted small mb-0">
-                                                        Shared publicly - Jan 2020
-                                                    </p>
+                                                    <h6 class="fw-bold text-primary mb-1 " th:text="${comment.getUsername()}">Lily Coleman</h6>
                                                 </div>
                                             </div>
-                                            <div th:each="comment : ${comments}">
+                                            <div >
                                                 <p  th:text="${comment.getContent()}" style="line-height:1.6">
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                                                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                                     quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
                                                 </p>
+                                                <a  type="button" th:href="@{'/admin/comment/' + ${comment.getId()}+'/'+ ${post.id}}"  class="btn btn-primary mb-3" sec:authorize="hasAnyRole('ROLE_ADMIN')">Өчүрүү</a>
                                             </div>
                                         </div>
-                                        <div class="card-footer py-1 border-0" style="background-color: #f8f9fa;">
+                                        <div sec:authorize="isAuthenticated()" class="card-footer py-1 border-0" style="background-color: #f8f9fa;">
                                             <form method="post" th:action="@{/comment/{id}(id=${post.id})}" action="" th:object="${comment}" >
                                             <div class="d-flex flex-start w-100">
                                                 <div class="form-outline w-100">
@@ -51,6 +49,15 @@
                                             </div>
                                             </form>
                                         </div>
+                                        <div sec:authorize="isAnonymous()" class="card-footer py-1 border-0" style="background-color: #f8f9fa;">
+                                                <div class="d-flex flex-start w-100">
+                                                    <div class="form-outline w-100">
+                                                        <input required name="content" value="Комментарий калтыруу үчүн өз ысымыңыз менен кириңиз же каттоодон өтүңүз." class="form-control" id="textArea" rows="1" style="background: #fff;height:50px">
+                                                    </div>
+                                                </div>
+
+                                        </div>
+
                                         <hr>
                                     </div>
                                 </div>

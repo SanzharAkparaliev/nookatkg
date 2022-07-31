@@ -3,8 +3,11 @@ package com.example.nookatkg.controller;
 
 import com.example.nookatkg.model.Category;
 import com.example.nookatkg.model.Post;
+import com.example.nookatkg.model.User;
 import com.example.nookatkg.service.impl.CategoryServiceImpl;
+import com.example.nookatkg.service.impl.CommentServiceImp;
 import com.example.nookatkg.service.impl.PostServiceImpl;
+import com.example.nookatkg.service.impl.UserServiceimpl;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +38,11 @@ public class AdminController {
     public static  String uploadDir = System.getProperty("user.dir") + "/src/main/resources/static/uploads";
 
     @Autowired
+    private UserServiceimpl userServiceimpl;
+    @Autowired
     private PostServiceImpl postService;
+    @Autowired
+    private CommentServiceImp commentServiceImp;
     @GetMapping("/")
     public String AdminPage(Model model){
         model.addAttribute("title","Админ панели");
@@ -114,10 +121,15 @@ public class AdminController {
 //            Files.copy(file.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
         String imageUUID;
         if(!file.isEmpty()){
-            imageUUID = file.getOriginalFilename();
-            Path fileNameAndPath = Paths.get(uploadDir,imageUUID);
-            Files.write(fileNameAndPath,file.getBytes());
-            post.setImageUrl(imageUUID);
+//            imageUUID = file.getOriginalFilename();
+//            Path fileNameAndPath = Paths.get(uploadDir,imageUUID);
+//            Files.write(fileNameAndPath,file.getBytes());
+//            post.setImageUrl(imageUUID);
+
+            File saveFile  = new ClassPathResource("static/uploads").getFile();
+            Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
+            Files.copy(file.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
+            post.setImageUrl(file.getOriginalFilename());
         }else {
             post.setImageUrl("image.jpg");
         }
@@ -171,6 +183,19 @@ public class AdminController {
         post.setBanner(true);
         postService.creatPost(post);
         return "redirect:/admin/banner";
+    }
+
+    @GetMapping("/users")
+    public String getAllUsers(Model model){
+        List<User> users = userServiceimpl.getAllUsers();
+        model.addAttribute("users",users);
+        return "admin/users";
+    }
+
+    @GetMapping("/comment/{id}/{postId}")
+    public String deleteComment(Model model,@ModelAttribute("id") Long id,@ModelAttribute("postId")Long postId){
+        commentServiceImp.deleteComment(id);
+         return "redirect:/category/news/"+postId;
     }
 
 

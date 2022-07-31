@@ -32,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
@@ -45,6 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -55,18 +57,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/")
                 .loginProcessingUrl("/dologin")
                 .and()
+                .csrf().disable()
                 .logout().permitAll()
                 .and()
-
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .and()
-
                 .oauth2Login()
                 .userInfoEndpoint()
                 .userService(oAuth2UserService)
                 .and()
                 .successHandler(oAuth2LoginSuccessHandler);
-//                .and()
-//                .logout().permitAll();
+
     }
 }
