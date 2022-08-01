@@ -29,9 +29,7 @@ spring:
             scope:
               - email
               - profile
-          facebook:
-            client-id: 1247490096006769
-            client-secret: ca612dd4b418e6df8609ab3ebcd4e689
+
 server:
   port: 8000
   error:
