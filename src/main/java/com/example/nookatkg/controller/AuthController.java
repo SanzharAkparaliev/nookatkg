@@ -28,7 +28,7 @@ public class AuthController {
             session.setAttribute("message",new Message("Ийгиликтуу катталдыныз !!","alert"));
         }catch (Exception e){
             e.printStackTrace();
-            session.setAttribute("message",new Message("Myndai koldonuuchu bar !! ","alert-danger"));
+            session.setAttribute("message",new Message("Мындай колдонуучу катталган !! ","alert-danger"));
             model.addAttribute("user",user);
             return "redirect:/";
         }
