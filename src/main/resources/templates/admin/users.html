@@ -28,8 +28,12 @@
                                     <th scope="row" th:text="${iStat.index + 1}">1</th>
                                     <td th:text="${user.username}"></td>
                                     <td th:text="${user.email}"></td>
-                                    <td th:text="${user.role}"></td>
-
+                                    <td th:if="${user.role == 'ROLE_ADMIN'}">
+                                        <a href="" th:href="@{/admin/user/dontactive/{id}(id=${user.id})}"  class="btn btn-danger">Admin кылбоо</a>
+                                    </td>
+                                    <td th:if="${user.role == 'ROLE_USER'}">
+                                        <a href="" th:href="@{/admin/user/active/{id}(id=${user.id})}" class="btn btn-primary">Аdmin кылуу</a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

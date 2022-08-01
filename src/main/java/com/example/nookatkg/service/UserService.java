@@ -10,4 +10,7 @@ public interface UserService {
 
      List<User> getAllUsers();
 
+     public void doAdmin(Long userId);
+     public void dontAdmin(Long userId);
+
 }

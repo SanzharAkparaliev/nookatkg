@@ -198,6 +198,18 @@ public class AdminController {
          return "redirect:/category/news/"+postId;
     }
 
+    @GetMapping("/user/active/{id}")
+    public String doAdmin(@PathVariable("id") Long userID){
+        userServiceimpl.doAdmin(userID);
+        return "redirect:/admin/users";
+    }
+
+    @GetMapping("/user/dontactive/{id}")
+    public String dontAdmin(@PathVariable("id") Long userID){
+        userServiceimpl.dontAdmin(userID);
+        return "redirect:/admin/users";
+    }
+
 
 
 }

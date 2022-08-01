@@ -37,4 +37,18 @@ public class UserServiceimpl implements UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    @Override
+    public void doAdmin(Long userId) {
+        User user = userRepository.getById(userId);
+        user.setRole("ROLE_ADMIN");
+        userRepository.save(user);
+    }
+
+    @Override
+    public void dontAdmin(Long userId) {
+        User user = userRepository.getById(userId);
+        user.setRole("ROLE_USER");
+        userRepository.save(user);
+    }
 }
